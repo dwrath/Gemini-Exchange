@@ -6,10 +6,15 @@ const tokens = (n) => {
 };
 describe("Token", () => {
   let token;
+  let accounts;
+  let deployer;
   beforeEach(async () => {
     //Fetch token from blockchain
     const Token = await ethers.getContractFactory("Token");
     token = await Token.deploy("Gemini", "GEM", "1000000");
+
+    accounts = await ethers.getSigners();
+    deployer = accounts[0];
   });
   describe("Deployment", () => {
     const name = "Gemini";
@@ -33,6 +38,9 @@ describe("Token", () => {
       //check name is correct
 
       expect(await token.totalSupply()).to.equal(totalSupply);
+    });
+    it("assigns total supply to deployer", async () => {
+      expect(await token.balanceOf(deployer.address)).to.equal(totalSupply);
     });
   });
 });
