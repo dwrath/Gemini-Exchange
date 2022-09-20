@@ -6,7 +6,8 @@ import {
   loadProvider,
   loadNetwork,
   loadAccount,
-  loadToken,
+  loadTokens,
+  loadExchange,
 } from "../store/interactions";
 
 function Main() {
@@ -18,10 +19,17 @@ function Main() {
 
     // Connect Ethers to blockchain
     const provider = loadProvider(dispatch);
+    // Fetch current network's chainId (e.g. hardhat: 31337, kovan: 42)
     const chainId = await loadNetwork(provider, dispatch);
 
-    // Token Smart Contract
-    await loadToken(provider, config[chainId].Gemini.address, dispatch);
+    // Load token smart contracts
+    const Gemini = config[chainId].Gemini;
+    const mETH = config[chainId].mETH;
+    await loadTokens(provider, [Gemini.address, mETH.address], dispatch);
+
+    // Load exchange smart contract
+    const exchangeConfig = config[chainId].exchange;
+    await loadExchange(provider, exchangeConfig.address, dispatch);
   };
   useEffect(() => {
     loadBlockchainData();
