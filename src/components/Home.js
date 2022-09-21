@@ -18,6 +18,25 @@ function Home() {
       <button onClick={navigateToHome}>Home</button>
       <button onClick={navigateToExchange}>Exchange</button>;
       <button onClick={navigateToUpload}>Upload Data</button>;
+      <main className="exchange grid">
+        <section className="exchange__section--left grid">
+          {/* Markets */}
+
+          {/* Balance */}
+
+          {/* Order */}
+        </section>
+        <section className="exchange__section--right grid">
+          {/* PriceChart */}
+
+          {/* Transactions */}
+
+          {/* Trades */}
+
+          {/* OrderBook */}
+        </section>
+      </main>
+      {/* Alert */}
     </div>
   );
 }
