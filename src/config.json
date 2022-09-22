@@ -17,6 +17,14 @@
     "42":{
       "explorerURL": "https://kovan.etherscan.io"
     },
-    "Mainnet":{}
+    "1":{
+      "explorerURL": "https://etherscan.io"
+    },
+    "3":{
+      "explorerURL": "https://ropsten.etherscan.io"
+    },
+    "5":{
+      "explorerURL": "https://goerli.etherscan.io"
+    }
   }
   
