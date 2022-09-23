@@ -9,7 +9,7 @@ function Home() {
     navigate("/exchange");
   };
   const navigateToUpload = () => {
-    navigate("/upload");
+    navigate("/upload-data");
   };
   const navigateToHome = () => {
     navigate("/");
