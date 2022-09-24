@@ -1,47 +1,31 @@
 import { useState } from "react";
-import { create as ipfsHttpClient } from "ipfs-http-client";
+import { Web3Storage } from "web3.storage";
 
-// insert your infura project crediental you can find
-// easily these your infura account in API key management section
-const projectId = "2F9PcklON1NHjTdHc49tHMpgc3u";
-const projectSecretKey = "899ebc2db67fca5a0e3bd949da0b1941";
-const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
+// Construct with token and endpoint
 
 function Upload() {
-  const [images, setImages] = useState([]);
-  const ipfs = ipfsHttpClient({
-    url: "https://ipfs.infura.io:5001/api/v0",
-    headers: {
-      authorization,
-    },
-  });
+  // Construct with token and endpoint
+
+  const apiToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDNjOGIyRTA1RjU2OGM0Q0Y2NjBGYUQ3Y0MyYzcxMTIzQWI0N0REMzIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjM5ODYyNzgzNDYsIm5hbWUiOiJHZW1pbmlFeGNoYW5nZSJ9.wo08D1850XYCxCFC2w7r59s9_b9TlOZRMxIWijhlVzQ";
+  const client = new Web3Storage({ token: apiToken });
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     const form = event.target;
     const files = form[0].files;
-
+    const rootCid = await client.put(files, {
+      name: "files",
+      maxRetries: 3,
+    });
     if (!files || files.length === 0) {
       return alert("No files selected");
     }
-
-    const file = files[0];
-    // upload files
-    const result = await ipfs.add(file);
-
-    setImages([
-      ...images,
-      {
-        cid: result.cid,
-        path: result.path,
-      },
-    ]);
-
-    form.reset();
   };
 
   return (
     <div className="App">
-      {ipfs && (
+      {
         <>
           <h3>Upload file to IPFS</h3>
           <form onSubmit={onSubmitHandler}>
@@ -49,17 +33,7 @@ function Upload() {
             <button type="submit">Upload file</button>
           </form>
         </>
-      )}
-      <div>
-        {images.map((image, index) => (
-          <img
-            alt={`Uploaded #${index + 1}`}
-            src={"https://skywalker.infura-ipfs.io/ipfs/" + image.path}
-            style={{ maxWidth: "400px", margin: "15px" }}
-            key={image.cid.toString() + index}
-          />
-        ))}
-      </div>
+      }
     </div>
   );
 }
