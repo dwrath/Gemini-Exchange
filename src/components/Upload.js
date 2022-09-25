@@ -4,6 +4,7 @@ import { Web3Storage } from "web3.storage";
 // Construct with token and endpoint
 
 function Upload() {
+  let [hash, updateForm] = useState(null);
   // Construct with token and endpoint
 
   const apiToken =
@@ -12,28 +13,51 @@ function Upload() {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const form = event.target;
-    const files = form[0].files;
-    const rootCid = await client.put(files, {
+    let form = event.target;
+    const file = form[0].files;
+    let rootCid = await client.put(file, {
       name: "files",
       maxRetries: 3,
     });
-    if (!files || files.length === 0) {
+
+    if (!file || file.length === 0) {
       return alert("No files selected");
+    }
+
+    updateForm(rootCid);
+  };
+
+  const retrieve = async (event) => {
+    event.preventDefault();
+    let userRootCid = event.target;
+    const res = await client.get(userRootCid); // Web3Response
+    const files = await res.files(); // Web3File[]
+    for (const file of files) {
+      console.log(`${file.cid} ${file.name} ${file.size}`);
     }
   };
 
   return (
-    <div className="App">
-      {
-        <>
-          <h3>Upload file to IPFS</h3>
+    <div>
+      <main className="main">
+        <div className="topContainer">
+          <h3 className="title">Upload file to IPFS</h3>
           <form onSubmit={onSubmitHandler}>
             <input type="file" name="file" />
             <button type="submit">Upload file</button>
           </form>
-        </>
-      }
+        </div>
+        <div className="bottomContainer">
+          <p>This is your hash: {hash}</p>
+        </div>
+        <div>
+          <label>type hash below</label>
+          <input type="text"></input>
+          <button type="submit" onClick={retrieve}>
+            Submit
+          </button>
+        </div>
+      </main>
     </div>
   );
 }
