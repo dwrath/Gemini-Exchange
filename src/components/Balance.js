@@ -99,8 +99,6 @@ const Balance = () => {
       );
       setToken2TransferAmount(0);
     }
-
-    console.log("withrawing tokens...");
   };
 
   useEffect(() => {
@@ -127,7 +125,7 @@ const Balance = () => {
         </div>
       </div>
 
-      {/* Deposit/Withdraw Component 1 (GEM) */}
+      {/* Deposit/Withdraw Component 1 (DApp) */}
 
       <div className="exchange__transfers--form">
         <div className="flex-between">
@@ -202,7 +200,7 @@ const Balance = () => {
               : (e) => withdrawHandler(e, tokens[1])
           }
         >
-          <label htmlFor="token1"></label>
+          <label htmlFor="token1">{symbols && symbols[1]} Amount</label>
           <input
             type="text"
             id="token1"
