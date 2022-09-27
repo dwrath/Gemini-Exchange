@@ -5,6 +5,8 @@ import { Web3Storage } from "web3.storage";
 
 function Upload() {
   let [hash, updateForm] = useState(null);
+  let [link, setLink] = useState(null);
+
   // Construct with token and endpoint
 
   const apiToken =
@@ -29,14 +31,11 @@ function Upload() {
 
   const retrieve = async (event) => {
     event.preventDefault();
-    let userRootCid = event.target;
-    const res = await client.get(userRootCid); // Web3Response
-    const files = await res.files(); // Web3File[]
-    for (const file of files) {
-      console.log(`${file.cid} ${file.name} ${file.size}`);
-    }
-  };
 
+    let input = event.target[0].value;
+    setLink(input);
+    return link;
+  };
   return (
     <div>
       <main className="main">
@@ -44,18 +43,27 @@ function Upload() {
           <h3 className="title">Upload file to IPFS</h3>
           <form onSubmit={onSubmitHandler}>
             <input type="file" name="file" />
-            <button type="submit">Upload file</button>
+            <button type="submit" className="button">
+              Upload file
+            </button>
           </form>
         </div>
         <div className="bottomContainer">
-          <p>This is your hash: {hash}</p>
+          <p className="paragraph">
+            Click the link to access your file:
+            <a href={`${hash}.ipfs.dweb.link`}>{hash}</a>
+          </p>
         </div>
+
         <div>
-          <label>type hash below</label>
-          <input type="text"></input>
-          <button type="submit" onClick={retrieve}>
-            Submit
-          </button>
+          <form onSubmit={retrieve}>
+            <label>Enter your hash to go to your file:</label>
+            <input type="text"></input>
+            <a href={`${link}.ipfs.dweb.link`}>{link}</a>
+            <button type="submit" className="button">
+              Submit
+            </button>
+          </form>
         </div>
       </main>
     </div>

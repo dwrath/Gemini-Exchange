@@ -14,16 +14,23 @@
       },
       "explorerURL":"#"
     },
-    "42":{
-      "explorerURL": "https://kovan.etherscan.io"
-    },
     "1":{
+      
       "explorerURL": "https://etherscan.io"
     },
-    "3":{
-      "explorerURL": "https://ropsten.etherscan.io"
-    },
     "5":{
+      "exchange": {
+        "address": "0x13eA6D41315810327840660307F1491e1A9a4358"
+      },
+      "Gemini": {
+        "address": "0xBd9629E49dA51e104Bc94bBdB2012Da67fA5eD19"
+      },
+      "mETH": {
+        "address": "0xD5ef815Ebed5a07D92d4FD77928eb09921700376"
+      },
+      "mDAI": {
+        "address": "0xfa95Ae0546c2d0B85773D8b75e3ec35c97182793"
+      },
       "explorerURL": "https://goerli.etherscan.io"
     }
   }

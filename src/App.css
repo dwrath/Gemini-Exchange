@@ -160,6 +160,9 @@ small {
     font-weight: 100;
   }
 
+  .paragraph{
+    margin-bottom: 10%;
+  }
 /*-------------------------------------------------------*/
 .exchange__section--left {
   background: var(--clr-secondary);
