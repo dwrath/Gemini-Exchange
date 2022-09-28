@@ -48,7 +48,7 @@ const Navbar = () => {
               Select Network
             </option>
             <option value="0x7A69">Localhost</option>
-            <option value="0x1">Mainnet</option>
+            <option value="0x13881">Polygon Mumbai</option>
             <option value="0x5">Goerli</option>
           </select>
         )}
