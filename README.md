@@ -1,13 +1,20 @@
-# Sample Hardhat Project
+# Gemini Crypto Exchange
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Description
 
-Try running some of the following tasks:
+Decentralized Crypto Currency Exchange to deposit, withdraw, and trade tokens
 
-```shell
-npx hardhat help
-npx hardhat test
-GAS_REPORT=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+## Getting Started
+
+npm install
+
+install metamask with goerli or polygon mumbai coins
+
+### Executing program
+
+npm run start
+
+## Authors
+
+Damian Wrather
+[@Damethedev](https://instgram.com/damethedev)
