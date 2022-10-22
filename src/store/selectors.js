@@ -83,7 +83,7 @@ const decorateOrder = (order, tokens) => {
   let token0Amount, token1Amount;
 
   // Note: GEM should be considered token0, mETH is considered token1
-  // Example: Giving mETH in exchange for DApp
+  // Example: Giving mETH in exchange for GEM
   if (order.tokenGive === tokens[1].address) {
     token0Amount = order.amountGive; // The amount of GEM we are giving
     token1Amount = order.amountGet; // The amount of mETH we want...

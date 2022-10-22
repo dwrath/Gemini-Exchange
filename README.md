@@ -8,6 +8,8 @@ Decentralized Crypto Currency Exchange to deposit, withdraw, and trade tokens
 
 npm install
 
+uses hardhat for localhost
+
 install metamask with goerli or polygon mumbai coins
 
 ### Executing program
