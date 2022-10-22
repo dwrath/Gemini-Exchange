@@ -19,29 +19,17 @@ async function main() {
   console.log("Using chainId:", chainId);
 
   // Fetch deployed tokens
-  const geminiToken = await ethers.getContractAt(
-    "Token",
-    config[chainId].Gemini.address
-  );
+  const geminiToken = await ethers.getContractAt("Token", config[chainId].Gemini.address);
   console.log(`Gemini Token fetched: ${geminiToken.address}\n`);
 
-  const mETH = await ethers.getContractAt(
-    "Token",
-    config[chainId].mETH.address
-  );
+  const mETH = await ethers.getContractAt("Token", config[chainId].mETH.address);
   console.log(`mETH Token fetched: ${mETH.address}\n`);
 
-  const mDAI = await ethers.getContractAt(
-    "Token",
-    config[chainId].mDAI.address
-  );
+  const mDAI = await ethers.getContractAt("Token", config[chainId].mDAI.address);
   console.log(`mDAI Token fetched: ${mDAI.address}\n`);
 
   // Fetch the deployed exchange
-  const exchange = await ethers.getContractAt(
-    "Exchange",
-    config[chainId].exchange.address
-  );
+  const exchange = await ethers.getContractAt("Exchange", config[chainId].exchange.address);
   console.log(`Exchange fetched: ${exchange.address}\n`);
 
   // Give tokens to account[1]
@@ -52,26 +40,20 @@ async function main() {
   // user1 transfers 10,000 mETH...
   let transaction, result;
   transaction = await mETH.connect(sender).transfer(receiver.address, amount);
-  console.log(
-    `Transferred ${amount} tokens from ${sender.address} to ${receiver.address}\n`
-  );
+  console.log(`Transferred ${amount} tokens from ${sender.address} to ${receiver.address}\n`);
 
   // Set up exchange users
   const user1 = accounts[0];
   const user2 = accounts[1];
   amount = tokens(10000);
 
-  // user1 approves 10,000 Dapp...
-  transaction = await geminiToken
-    .connect(user1)
-    .approve(exchange.address, amount);
+  // user1 approves 10,000 GEM...
+  transaction = await geminiToken.connect(user1).approve(exchange.address, amount);
   await transaction.wait();
   console.log(`Approved ${amount} tokens from ${user1.address}`);
 
-  // user1 deposits 10,000 DApp...
-  transaction = await exchange
-    .connect(user1)
-    .depositToken(geminiToken.address, amount);
+  // user1 deposits 10,000 GEM...
+  transaction = await exchange.connect(user1).depositToken(geminiToken.address, amount);
   await transaction.wait();
   console.log(`Deposited ${amount} Ether from ${user1.address}\n`);
 
@@ -81,9 +63,7 @@ async function main() {
   console.log(`Approved ${amount} tokens from ${user2.address}`);
 
   // User 2 Deposits mETH
-  transaction = await exchange
-    .connect(user2)
-    .depositToken(mETH.address, amount);
+  transaction = await exchange.connect(user2).depositToken(mETH.address, amount);
   await transaction.wait();
   console.log(`Deposited ${amount} tokens from ${user2.address}\n`);
 
@@ -93,9 +73,7 @@ async function main() {
 
   // User 1 makes order to get tokens
   let orderId;
-  transaction = await exchange
-    .connect(user1)
-    .makeOrder(mETH.address, tokens(100), geminiToken.address, tokens(5));
+  transaction = await exchange.connect(user1).makeOrder(mETH.address, tokens(100), geminiToken.address, tokens(5));
   result = await transaction.wait();
   console.log(`Made order from ${user1.address}`);
 
@@ -113,9 +91,7 @@ async function main() {
   //
 
   // User 1 makes order
-  transaction = await exchange
-    .connect(user1)
-    .makeOrder(mETH.address, tokens(100), geminiToken.address, tokens(10));
+  transaction = await exchange.connect(user1).makeOrder(mETH.address, tokens(100), geminiToken.address, tokens(10));
   result = await transaction.wait();
   console.log(`Made order from ${user1.address}`);
 
@@ -129,12 +105,7 @@ async function main() {
   await wait(1);
 
   // User 1 makes another order
-  transaction = await exchange.makeOrder(
-    mETH.address,
-    tokens(50),
-    geminiToken.address,
-    tokens(15)
-  );
+  transaction = await exchange.makeOrder(mETH.address, tokens(50), geminiToken.address, tokens(15));
   result = await transaction.wait();
   console.log(`Made order from ${user1.address}`);
 
@@ -148,9 +119,7 @@ async function main() {
   await wait(1);
 
   // User 1 makes final order
-  transaction = await exchange
-    .connect(user1)
-    .makeOrder(mETH.address, tokens(200), geminiToken.address, tokens(20));
+  transaction = await exchange.connect(user1).makeOrder(mETH.address, tokens(200), geminiToken.address, tokens(20));
   result = await transaction.wait();
   console.log(`Made order from ${user1.address}`);
 

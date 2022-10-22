@@ -161,7 +161,7 @@ contract Exchange {
             _order.id,
             _order.user,
             _order.tokenGet,
-            _order.amountGive,
+            _order.amountGet,
             _order.tokenGive,
             _order.amountGive
         );

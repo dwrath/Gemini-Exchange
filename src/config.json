@@ -16,32 +16,32 @@
     },
     "80001":{
       "exchange": {
-        "address": "0xfa95Ae0546c2d0B85773D8b75e3ec35c97182793"
+        "address": "0x27e9E766c6fd300c9A1eaE9408dc43EC6116f2F8"
       },
       "Gemini": {
-        "address": "0x7685FDDA3F1A003eB2B5fC36a23E15Db00c7b1AC"
+        "address": "0x52d24E39F60fE6E81452a4a4012420958436A984"
       },
       "mETH": {
-        "address": "0xBd9629E49dA51e104Bc94bBdB2012Da67fA5eD19"
+        "address": "0x271731FDAc43153b9f1D8AF8F20b424AB5C5B38C"
       },
       "mDAI": {
-        "address": "0xD5ef815Ebed5a07D92d4FD77928eb09921700376"
+        "address": "0xE9f9F693A6e39cA9C95BEC0c1a00d4512Ac95077"
       },
       
       "explorerURL": "https://mumbai.polygonscan.com"
     },
     "5":{
       "exchange": {
-        "address": "0x13eA6D41315810327840660307F1491e1A9a4358"
+        "address": "0x266E4B563da9fb88a85F7F20BA49e1a428581F00"
       },
       "Gemini": {
-        "address": "0xBd9629E49dA51e104Bc94bBdB2012Da67fA5eD19"
+        "address": "0x3e8A9bC1b978918532B339E5e92535b76e68C668"
       },
       "mETH": {
-        "address": "0xD5ef815Ebed5a07D92d4FD77928eb09921700376"
+        "address": "0xf68789fB9E4498a17709C73fD7A0c1D980ecBa41"
       },
       "mDAI": {
-        "address": "0xfa95Ae0546c2d0B85773D8b75e3ec35c97182793"
+        "address": "0xf07cD5EB82D24178E1Af0ffb03C33628426EB466"
       },
       "explorerURL": "https://goerli.etherscan.io"
     }
